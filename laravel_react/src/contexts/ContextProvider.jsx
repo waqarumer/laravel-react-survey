@@ -13,7 +13,7 @@ const StateContext = createContext(
 const tmpSurveys = [
     {
       "id": 1,
-      "image_url": "https:\/\/api.yoursurveys.xyz\/images\/vJutXzn02CDwdOyh.png",
+      "image_url": "https://api.yoursurveys.xyz/images/vJutXzn02CDwdOyh.png",
       "title": "TheCodeholic YouTube channel",
       "slug": "thecodeholic-youtube-channel",
       "status": true,
@@ -190,6 +190,7 @@ export const  ContextProvider = ({children}) => {
         imageUrl:'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
     })
     const [userToken,setUserToken] = useState('1234')
+    const [surveys,setSurveys] = useState(tmpSurveys)
 
   return (
     
@@ -198,7 +199,8 @@ export const  ContextProvider = ({children}) => {
             currentUser,
             setCurrentUser,
             userToken,
-            setUserToken
+            setUserToken,
+            surveys
         }
     }>
         {children}
@@ -206,4 +208,4 @@ export const  ContextProvider = ({children}) => {
   )
 }
 
-export const userStateContext = () => useContext(StateContext)
+export const useStateContext = () => useContext(StateContext)
