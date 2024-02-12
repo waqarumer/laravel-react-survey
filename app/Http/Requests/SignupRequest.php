@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-
+use Illuminate\Validation\Rules\Password;
 class SignupRequest extends FormRequest
 {
     /**
@@ -11,7 +11,7 @@ class SignupRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -19,15 +19,15 @@ class SignupRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
-            'name' =>'required|string',
-            'email' => 'required|email|string|unique:users,email'
+             'name' => 'required|string',
+            'email' => 'required|email|string|unique:users,email',
             'password' => [
                 'required',
                 'confirmed',
-                Password::main(8) -> mixedCase()->numbers()->symbols();
+                Password::min(8)->mixedCase()->numbers()->symbols()
             ]
 
             //
